@@ -1,0 +1,30 @@
+{
+	"name": "Azure Terraform (Community)",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"TERRAFORM_VERSION": "1.1.2",
+			"TFLINT_VERSION": "0.18.0",
+			"INSTALL_AZURE_CLI": "true",
+			"INSTALL_DOCKER": "true",
+			"INSTALL_NODE": "true"
+		}
+	},
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind"
+	],
+	"overrideCommand": false,
+	"workspaceFolder": "/workspace",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"extensions": [
+		"hashicorp.terraform",
+		"ms-azuretools.vscode-azureterraform",
+		"ms-vscode.azurecli",
+		"ms-azuretools.vscode-docker"
+	],
+	"remoteUser": "vscode"
+}
